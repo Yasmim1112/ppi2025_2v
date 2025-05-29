@@ -1,6 +1,6 @@
 .container{
-    margin:0 auto;
-    max-width: 80rem;
+    /*margin:0 auto;*/
+    max-width: 50rem;
 }
 
 
@@ -10,8 +10,8 @@
     color: var(--periwinkle);
     box-shadow: 0 0 1rem var(--gray-900);   
     padding: 3rem;
-    margin: 3rem 5rem;
-    border-radius: 2rem;
+   /*margin: 3rem 5rem; */
+   border-radius: 2rem;
 }
 
 
