@@ -1,7 +1,7 @@
 
 .container {
     padding: 3rem;
-    height: 100vh;
+    height: max-content;
     display: flex;
     flex-direction: row; /*colum reverse  column-rverse*/
     flex-wrap: wrap;
@@ -14,6 +14,27 @@
 
     /* EIXO VERTICAL */
     align-items: center;
-    align-content: center;
+    /* align-content: center;*/
+    align-content: start;
+
+    @media(max-width: 768px) {
+        flex-flow: column nowrap;
+        hight: auto;
+    }
 }
+.title {
+    margin-top: 3rem;
+    font-size: 10rem;
+    font-weight: bolder;
+    text-align: center;
+
+   @media(max-width: 768px) {
+        font-size: 6rem;
+    }
+
+@media(max-width: 758px) and (max-width: 1200px) {
+        font-size: 3rem;
+    }
+   }
+
 

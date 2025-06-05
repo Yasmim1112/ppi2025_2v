@@ -12,6 +12,8 @@ export function MyTextList() {
     {title: "Meu título  ", text: "Meu texto "}
 ];
     return (
+      <>
+      <h1 className={styles.title}>Lista de Textos</h1>
         <div className={styles.container}>
             {texts.map((text, index) => {
       return (
@@ -21,5 +23,6 @@ export function MyTextList() {
       );
     })}
         </div>
+      </>
     );
 }
