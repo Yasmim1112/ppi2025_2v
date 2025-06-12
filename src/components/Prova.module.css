@@ -1,0 +1,50 @@
+.container {
+  display: grid;
+
+  grid-template-areas:
+  "header"
+  "main"
+  "footer";
+
+  grid-template-columns: 30rem auto 30rem;
+  grid-template-rows: 10rem 5rem auto 10rem 10rem;
+
+  @media (max-width: 1200px) {
+    display: flex;
+    grid-template-columns: 30rem auto;
+    grid-template-rows: 10rem 5rem auto 10rem 10rem;
+
+    @media (min-width: 768px) {
+      display: flex;
+      grid-template-columns: 30rem auto;
+      grid-template-rows: 10rem 5rem auto;
+    }
+  }
+}
+
+.header{
+  grid-area: header;
+  background-color: darkblue;
+}
+
+.main {
+  grid-area: main;
+  background-color: blue;
+}
+
+.footer{
+  grid-area: footer;
+  background-color: white;
+}
+
+.card {
+  background-color: blueviolet;
+  border-radius: 1rem;
+  color: var(--primary-contrast-light);
+  padding: 1rem;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+  text-align: center;
+  height: 20rem;
+}
+
