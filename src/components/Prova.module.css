@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+
 .container {
   display: grid;
   min-width: 100vw;
@@ -46,8 +48,26 @@ align-items: center;
 
 .footer{
   grid-area: footer;
-  background-color: rgba(255, 255, 255, 0.671);
-  
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerText {
+  text-align: left;
+  font-size: 9px;
+  margin-left: 2rem;
+  align-items: center;
+  font-family: arial;
+}
+.footer h2 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Ephesis', cursive;
+  font-size: 4rem;
+  color: rgb(37,100,234);
 }
 
 .card {
@@ -71,10 +91,11 @@ align-items: center;
   border-radius: 1rem;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .card h2 {
-  font-size: 1.5rem;
+  font-size: 3rem;
   margin: 0.5rem 0;
   font-weight: bold;
 }
@@ -92,5 +113,51 @@ align-items: center;
 .header svg {
   width: 100px;
   height: 100px;
+}
+
+.icons {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 5rem;
+    background-color: rgba(36,99,235,255);
+    border-radius: 2rem;
+    padding: 1rem;
+    box-shadow: 0rem 0rem 1rem var(--primary-dark);
+    @media (max-width:768px) {
+        justify-content: center;
+        left: 50%;
+        transform: translateX(30%);
+    }
+}
+.icons button {
+    background-color: transparent;
+    border: none;
+    margin-left: 0.5rem;
+    margin-right:0.5rem;
+}
+
+.icons a svg {
+    font-size: 2rem;
+  width: 2em;
+  height: 2em;
+  color: rgb(0,0,0);
+}
+
+@media (max-width: 1200px) {
+  .icons a svg {
+    font-size: 1.5rem;
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .icons a svg {
+    font-size: 2rem;
+    width: 4rem;
+    height: 2em;
+  }
 }
 
