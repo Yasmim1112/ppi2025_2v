@@ -7,7 +7,7 @@ export function Prova() {
    <div className={styles.container}>
          <header className={styles.header}      >   
           <BookHeadphones />
-        <h1 className={styles.title}>Foco, Força e Fé</h1>
+        <h1 className={styles.title}>Foco, Força, Fé</h1>
           </header>
          <main className={styles.main}>
                  <div className={styles.grid}>
@@ -45,7 +45,6 @@ export function Prova() {
            <h1>Programação para Internet 2025</h1>
             </div>
             <h2>Yasmim Fernandes dos Santos</h2>
-
             <div className={styles.icons}>
             <a href='https://github.com/Yasmim1112' target='_blank'>
               <Github/>
@@ -57,7 +56,6 @@ export function Prova() {
               <Phone/>
             </a>
           </div>
-         
          </footer>
        </div>
      );

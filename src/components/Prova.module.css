@@ -2,28 +2,16 @@
 
 .container {
   display: grid;
-  min-width: 100vw;
-  min-height: 100vh;
+  
 
   grid-template-areas:
   "header"
   "main"
   "footer";
 
-  grid-template-columns: 1fr;
+  grid-template-columns: 100vw;
   grid-template-rows: 20rem auto 20rem;
 
-  @media (max-width: 1200px) {
-    display: flex;
-    grid-template-columns: 1fr ;
-    grid-template-rows: 20rem auto 20rem;
-
-    @media (min-width: 768px) {
-      display: flex;
-      grid-template-columns: 1fr;
-      grid-template-rows: 20rem auto 20rem;
-    }
-  }
 }
 
 .header{
@@ -34,8 +22,12 @@
 align-items: center;
  color: rgb(37,100,234);
   font-size: 4rem;
-}
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+  
 .main {
   grid-area: main;
   background: linear-gradient(
@@ -78,10 +70,12 @@ align-items: center;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
   font-size: 1.25rem;
   text-align: center;
-  height: 45rem;
+  height: auto;
   margin: 1rem;
   display: flex;
   flex-direction: column;
+
+  
 }
 
 .card img {
@@ -103,11 +97,30 @@ align-items: center;
 .card p {
   font-size: 1.25rem;
   color: white;
-   text-align: left;
+  text-align: left;
+  margin: 0.5rem 0;
+
+  @media(max-width: 1000px) {
+    font-size: 10px;
+  }
+  @media(max-width: 8px) {
+    font-size: 10px;
+  }
 }
 
 .grid {
   display: flex;
+  flex-wrap: nowrap; /* Cards em linha */
+  justify-content: center;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-rows: repeat(auto-fit,mincontent);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    flex-wrap: wrap; /* Cards pulam para baixo no celular */
+  }
 }
 
 .header svg {
@@ -160,4 +173,18 @@ align-items: center;
     height: 2em;
   }
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha automaticamente */
+  justify-content: center;
+  gap: 1rem;
+}
+
+.card {
+  min-width: 300px; 
+  flex: 1 1 300px;  
+  max-width: 350px; 
+}
+
 
