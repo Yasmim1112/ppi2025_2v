@@ -1,9 +1,13 @@
 import styles from './Prova.module.css';
+import { BookHeadphones } from 'lucide-react';
 
 export function Prova() {
   return (
    <div className={styles.container}>
-         <header className={styles.header} />
+         <header className={styles.header}      >   
+          <BookHeadphones />
+        <h1 className={styles.title}>Foco, Força e Fé</h1>
+          </header>
          <main className={styles.main}>
                  <div className={styles.grid}>
                    <div className={styles.card}>
