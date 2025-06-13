@@ -63,4 +63,8 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-template-rows: repeat(auto-fit,mincontent);
+   display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha automaticamente */
+  justify-content: center;
+  gap: 1rem;
 }
