@@ -1,0 +1,20 @@
+
+.header{
+  grid-area: header;
+ background-color: rgba(15,21,33,255);
+ display: flex;
+ justify-content: center;
+align-items: center;
+ color: rgb(37,100,234);
+  font-size: 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    flex-direction: column;
+  }
+}
+
+.header svg {
+  width: 100px;
+  height: 100px;
+}

@@ -10,7 +10,7 @@
   "footer";
 
   grid-template-columns: 100vw;
-  grid-template-rows: 20rem auto 20rem;
+  grid-template-rows: 20rem auto auto;
 
 }
 
@@ -50,7 +50,7 @@ align-items: center;
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
-    
+    gap:2rem;
   }
 }
 
@@ -60,13 +60,19 @@ align-items: center;
   margin-left: 2rem;
   align-items: center;
   font-family: arial;
+  margin-top: 2rem;
 }
+
 .footer h2 {
   margin: 0;
   padding: 0;
   font-family: 'Ephesis', cursive;
   font-size: 4rem;
   color: rgb(37,100,234);
+
+  @media(max-width: 770px) {
+    font-size: 3rem;
+  }
 }
 
 .card {
@@ -145,6 +151,11 @@ align-items: center;
     border-radius: 2rem;
     padding: 1rem;
     box-shadow: 0rem 0rem 1rem var(--primary-dark);
+    margin-bottom: 2rem;
+
+
+    
+
     @media (max-width:768px) {
         justify-content: center;
         left: 50%;
@@ -159,16 +170,18 @@ align-items: center;
 }
 
 .icons a svg {
-    font-size: 2rem;
-  width: 2em;
-  height: 2em;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
   color: rgb(0,0,0);
+  
+
 }
 
 @media (max-width: 1200px) {
   .icons a svg {
     font-size: 1.5rem;
-    width: 1.5em;
+    width: 1.5rem;
     height: 1.5em;
   }
 }
@@ -176,7 +189,7 @@ align-items: center;
 @media (max-width: 768px) {
   .icons a svg {
     font-size: 2rem;
-    width: 4rem;
+    width: 2rem;
     height: 2em;
   }
 }

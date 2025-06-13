@@ -3,12 +3,19 @@ import "./styles/global.css";
 import { MyText } from "./components/MyText";
 import { MyTextList } from "./components/MyTextList";
 import { Desafio} from "./components/Desafio";
-import { Prova } from "./components/Prova";
+import {Hearder} from "./components/Hearder";
+import {Main} from "./components/Main";
+import {Footer} from "./components/Footer";
+
 
 export default function App() {
   return (
     <>
-      <Prova/>
+    <div className="container">
+      <Hearder/>
+      <Main/>
+      <Footer/>
+      </div>
     </>
   );
 }
