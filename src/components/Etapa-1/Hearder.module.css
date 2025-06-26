@@ -1,11 +1,11 @@
 
 .header{
   grid-area: header;
- background-color: rgba(15,21,33,255);
+ background-color: rgb(107, 166, 189);
  display: flex;
  justify-content: center;
 align-items: center;
- color: rgb(37,100,234);
+ color: rgb(0, 8, 8);
   font-size: 4rem;
 
   @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./LuckyNumber.module.css";
+import { AlignCenter } from "lucide-react";
 
 export function LuckyNumber() {
   const [num, setNum] = useState(0);         
@@ -33,7 +34,7 @@ export function LuckyNumber() {
       {msg && <p style={{ color: 'red', fontSize: '1.5rem' }}>{msg}</p>}
 
       {hist.length > 0 && (
-        <div style={{ marginTop: '2rem', fontSize: '1.5rem' }}>
+        <div style={{ marginTop: '2rem', fontSize: '1.5rem', position: AlignCenter }}>
           <strong>Números sorteados:</strong>
           <p>{hist.join(', ')}</p>
         </div>

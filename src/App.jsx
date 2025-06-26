@@ -4,7 +4,6 @@ import { Hearder} from "./components/Etapa-1/Hearder";
 import { LuckyNumber } from "./components/Etapa-2/LuckyNumber";
 
 export default function App() {
-
   return (
     // React Fragment
     <>
@@ -13,3 +12,4 @@ export default function App() {
     </>
   );
 }
+

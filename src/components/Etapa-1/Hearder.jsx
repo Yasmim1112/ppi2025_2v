@@ -7,7 +7,7 @@ export function Hearder() {
   return (
          <header className={styles.header}      >   
           <BookHeadphones />
-        <h1 className={styles.title}>Foco, Força, Fé</h1>
+        <h1 className={styles.title}>Sorteador</h1>
           </header> 
      );
    }

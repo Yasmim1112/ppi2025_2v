@@ -6,14 +6,14 @@
     justify-content: start;
     gap: 2rem;
     height: 100vh;
-    background-color: var(--primary);
+    background-color: rgb(107, 186, 212);
     font-size: 3rem;
 }
 
 .button {
     padding: 1rem 2rem;
     border-radius: 0.5rem;
-    background-color: var(--primary-light);
+    background-color: rgb(219, 131, 157);
     color: var(--primary-contrast-dark);
     font-size: 2rem;
     cursor: pointer;
@@ -22,7 +22,7 @@
 }
 
 .button:hover {
-    background-color: var(--primary-dark);
+    background-color: rgb(211, 117, 139);
     color: var(--primary-light);
     transform: scale(1.05);
 }
