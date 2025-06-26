@@ -1,14 +1,14 @@
 import "./styles/theme.css";
 import "./styles/global.css";
-import { Header } from "./components/Header";
-import { LuckyNumber } from "./components/LuckyNumber";
+import { Hearder} from "./components/Etapa-1/Hearder";
+import { LuckyNumber } from "./components/Etapa-2/LuckyNumber";
 
 export default function App() {
 
   return (
     // React Fragment
     <>
-      <Header />
+      <Hearder />
       <LuckyNumber />
     </>
   );

@@ -7,7 +7,7 @@ export function LuckyNumber() {
   const [msg, setMsg] = useState('');        
 
   function handleClick() {
-    const n = Math.floor(Math.random() * 40) + 1;
+  const n = Math.floor(Math.random() * 40) + 1;
 
     if (hist.includes(n)) {
       setMsg(`O número ${n} já foi sorteado!`);
