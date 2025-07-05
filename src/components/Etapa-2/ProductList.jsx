@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "./ProductList.module.css";
 import { CircularProgress } from "@mui/material";
+import { Product } from "./Product";
 
 export function ProductList() {
-  var category = "beauty";
-  var limit = 12;
-  var apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
+  const category = "beauty";
+  const limit = 10;
+  const apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,6 @@ export function ProductList() {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-
         setProducts(data.products);
       } catch (error) {
         setError(error);
@@ -24,39 +24,45 @@ export function ProductList() {
         setLoading(false);
       }
     }
+
     setTimeout(() => {
       fetchProducts();
     }, 2000);
   }, []);
+
   return (
     <div className={styles.container}>
       <h1>TRJ Megastore</h1>
-      {products.map((product) => (
-        <div key={product.id} className={styles.productCard}>
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            className={styles.productImage}
-          />
-          <h2 className={styles.productTitle}>{product.title}</h2>
-          <p className={styles.productDescription}>{product.description}</p>
-          <p className={styles.productPrice}>${product.price}</p>
-        </div>
-      ))}
+
       {loading && (
         <div>
           <CircularProgress
-            // size="sm"
             thickness={5}
             style={{ margin: "2rem auto", display: "block" }}
-            sx={{
-              color: "#001111",
-            }}
+            sx={{ color: "#001111" }}
           />
           <p>Loading products...</p>
         </div>
       )}
+
       {error && <p>Error loading products: {error.message}</p>}
+
+      <div className={styles.productsGrid}>
+        {products.map((product) => {
+          // Verifica se os dados do produto estão completos
+          if (!product.thumbnail || !product.title || !product.price) return null;
+
+          return (
+            <Product
+              key={product.id}
+              thumbnail={product.thumbnail}
+              title={product.title}
+              description={product.description}
+              price={product.price}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
