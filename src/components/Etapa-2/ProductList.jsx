@@ -3,14 +3,20 @@ import styles from "./ProductList.module.css";
 import { CircularProgress } from "@mui/material";
 import { Product } from "./Product";
 
+export function handleClick(product) {
+    setCart([...cart, product]);
+    console.log("Produto adicionado ao carrinho:", product);
+}
+
 export function ProductList() {
-  const category = "beauty";
+  const category = "fragrances";
   const limit = 10;
   const apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
 
-  const [products, setProducts] = useState([]);
+ const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -48,11 +54,9 @@ export function ProductList() {
       {error && <p>Error loading products: {error.message}</p>}
 
       <div className={styles.productsGrid}>
-        {products.map((product) => {
-          // Verifica se os dados do produto estão completos
-          if (!product.thumbnail || !product.title || !product.price) return null;
-
-          return (
+        {products
+          .filter(product => product && product.thumbnail && product.title && product.price)
+          .map(product => (
             <Product
               key={product.id}
               thumbnail={product.thumbnail}
@@ -60,9 +64,18 @@ export function ProductList() {
               description={product.description}
               price={product.price}
             />
-          );
-        })}
+          ))}
+      </div>
+      <div>
+        <h2>Carrinho</h2>
+        <p>{cart }</p>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
