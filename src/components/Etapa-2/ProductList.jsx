@@ -3,20 +3,26 @@ import styles from "./ProductList.module.css";
 import { CircularProgress } from "@mui/material";
 import { Product } from "./Product";
 
-export function handleClick(product) {
-    setCart([...cart, product]);
-    console.log("Produto adicionado ao carrinho:", product);
-}
+ 
 
 export function ProductList() {
   const category = "fragrances";
   const limit = 10;
   const apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
 
+  function handleClick(product) {
+    setCart((prevCart) => [...prevCart, product]);
+    console.log("Produto adicionado ao carrinho:", product);
+  }
+  
  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cart, setCart] = useState([]);
+
+  function getCartTotal(cart) {
+  return cart.reduce((total, product) => total + product.price, 0);
+}
 
   useEffect(() => {
     async function fetchProducts() {
@@ -63,16 +69,18 @@ export function ProductList() {
               title={product.title}
               description={product.description}
               price={product.price}
+               onAddToCart={() => handleClick(product)} 
             />
           ))}
       </div>
       <div>
-        <h2>Carrinho</h2>
-        <p>{cart }</p>
+        <h2>Valor total:</h2>
+       <p>R$ {getCartTotal(cart).toFixed(2)}</p>
       </div>
     </div>
   );
 }
+
 
 
 
