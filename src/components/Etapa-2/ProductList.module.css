@@ -1,24 +1,19 @@
-.container{
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 20px;
-justify-content: center; 
-gap: 40px;
-width: 100%;
-max-width: 1200px;
-margin: 0 auto; 
-color: black;
-font-size: 20px; 
-}
-
-.productsGrid {
+.container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center; 
-  max-width: 1200px; 
-  width: 100%;
-  color: #000;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
 }
 
+.grid {
+  /* height: 100vh; */
+  padding: 1rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-rows: repeat(auto-fit, min-content);
+  gap: 3rem;
+
+  /* justify-content: center; */
+  /* align-content: center; */
+}
