@@ -37,4 +37,3 @@ export function Product({ product, addToCart }) {
     </div>
   );
 }
-

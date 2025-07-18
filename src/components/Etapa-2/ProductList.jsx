@@ -53,5 +53,3 @@ export function ProductList({ addToCart }) {
     </div>
   );
 }
-
-
