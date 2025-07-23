@@ -4,4 +4,48 @@
     gap: 1rem;
     padding: 1rem;
     align-items: center;
+    background-color: #6cc4b9e1;
+    color: rgb(17, 14, 14);
 }
+.cartItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80vw;
+    background-color: #adc3e0;
+    padding: 3rem;
+}
+
+.cartItem img {
+    width: 200px;
+    height: 200px;
+}
+.itemDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+
+}
+.buttonq{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    border-radius: 5px;
+     margin: 0 0.25rem;
+    display: inline-block;
+    margin: 0 0.25rem;
+    vertical-align: middle;
+}
+
+
+
+
+

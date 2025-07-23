@@ -11,6 +11,7 @@ export function ProductList({ addToCart }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [ qty, setQty ] = useState(0);
 
   useEffect(() => {
     async function fetchProducts() {

@@ -6,7 +6,11 @@
  justify-content: center;
 align-items: center;
  color: rgb(0, 8, 8);
-  font-size: 4rem;
+  font-size: 2rem;
+  justify-content: space-between;
+ padding-left: 2rem;
+  padding-right: 2rem; 
+  
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -15,6 +19,7 @@ align-items: center;
 }
 
 .header svg {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
+  
 }
