@@ -1,7 +1,7 @@
 import styles from "./Cart.module.css";
 import { useState } from "react";
+export function Cart({ cart, addToCart, rmToCart }) {
 
-export function Cart({ cart }) {
   const [qty, setQty] = useState(1);
 
   return (
@@ -17,8 +17,8 @@ export function Cart({ cart }) {
                 <img src={product.thumbnail} alt={product.title} />
                 <div className={styles.itemDetails}>
                   <h3>{product.title}</h3>
-                  <p>${product.price.toFixed(2)}</p>
-                  <div className={styles.quantity}>
+                  <p>${product.price.toFixed(2)*qty}</p>
+                  
                     <button className={styles.buttonq}
                       onClick={() => {
                         if (qty > 1) {
@@ -30,10 +30,10 @@ export function Cart({ cart }) {
                     <button className={styles.buttonq}
                       onClick={() => {
                         setQty(qty + 1);
+                        addToCart(product);
                       }}
                       >+</button>
                     </div>
-                </div>
                 </div>
             </li>
           ))}
@@ -42,3 +42,6 @@ export function Cart({ cart }) {
     </div>
   );
 }
+
+
+

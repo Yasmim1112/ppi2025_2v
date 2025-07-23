@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import styles from "./Header.module.css";
 import { ShoppingBasket } from "lucide-react";
 
+
 export function Header({ cart }) {
   return (
     <header className={styles.header}>

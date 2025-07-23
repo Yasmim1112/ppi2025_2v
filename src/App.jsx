@@ -13,13 +13,22 @@ export default function App() {
     setCart((prevCart) => [...prevCart, product]);
   }
 
+  function rmToCart(product) {
+    setCart((prevCart) => {
+    const index = prevCart.findIndex((item) => item.id === product.id);
+    if (index === -1) return prevCart;
+    const newCart = [...prevCart];
+    newCart.splice(index, 1);
+    return newCart;
+  });
+  }
   return (
     // React Fragment
     <>
       <Header cart={cart} />
       <Routes>
         <Route path="/" element={<ProductList addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart}addToCart={addToCart} rmToCart={rmToCart}/>} />
         {/* Add more routes as needed */}
       </Routes>
     </>
