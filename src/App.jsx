@@ -5,6 +5,7 @@ import { Header } from "./components/Etapa-1/Header";
 import { useState } from "react";
 import { Cart } from "./components/Etapa-2/Cart";
 import { Route, Routes } from "react-router";
+import { CartProvider } from "./components/service/CartContext";
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -25,12 +26,14 @@ export default function App() {
   return (
     // React Fragment
     <>
+    <CartProvider>
       <Header cart={cart} />
       <Routes>
         <Route path="/" element={<ProductList addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart}addToCart={addToCart} rmToCart={rmToCart}/>} />
         {/* Add more routes as needed */}
       </Routes>
+       </CartProvider>
     </>
   );
 }
