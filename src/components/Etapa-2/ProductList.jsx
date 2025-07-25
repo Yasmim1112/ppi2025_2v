@@ -7,6 +7,7 @@ import { CartContext } from "../service/CartContext";
 export function ProductList() {
   
   const { products, loading, error } = useContext(CartContext);
+  
   const searchInput = useRef(null);
 
   function handleClear() {
