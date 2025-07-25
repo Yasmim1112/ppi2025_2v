@@ -1,55 +1,40 @@
 import styles from "./Cart.module.css";
-import { useState } from "react";
-import { Product } from "./Product";
-export function Cart({ cart, addToCart, rmToCart }) {
+import { useContext } from "react";
+import { CartContext } from "../service/CartContext";
 
-  const productMap = {};
-  cart.forEach((product) => {
-    if (productMap[product.id]) {
-      productMap[product.id].qty += 1;
-    } else {
-      productMap[product.id] = { ...product, qty: 1 };
-    }
-  });
-   const uniqueProducts = Object.values(productMap);
-
+export function Cart() {
+  const { cart, updateQtyCart, clearCart } = useContext(CartContext);
 
   return (
     <div className={styles.cart}>
       <h2>Shopping Cart</h2>
-      {uniqueProducts.length === 0 ? (
+      {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <ul>
-          {uniqueProducts.map((product, index) => (
-            <li key={index}>
-              <div className={styles.cartItem}>
-                <img src={product.thumbnail} alt={product.title} />
-                <div className={styles.itemDetails}>
-                  <h3>{product.title}</h3>
-                  <p>${product.price.toFixed(2)*product.qty}</p>
-                  
-                    <button className={styles.buttonq}
-                      onClick={() => {
-                        if (product.qty > 1) {
-                          rmToCart(product);
-                        }
-                      }}
-                      >-</button>
-                    <p>{product.qty}</p>
-                    <button className={styles.buttonq}
-                      onClick={() => {
-                        addToCart(product);
-                      }}
-                      >+</button>
-                      <button onClick ={() => {
-                  for (let i = 0; i < product.qty; i++) {
-                    rmToCart(product);
+          {cart.map((product, index) => (
+            <li key={index} className={styles.cartItem}>
+              <img src={product.thumbnail} alt={product.title} />
+              <h3>{product.title}</h3>
+              <p>${product.price.toFixed(2)}</p>
+              <div className={styles.quantity}>
+                <button
+                  onClick={() =>
+                    updateQtyCart(product.id, product.quantity - 1)
                   }
-                }}> Remove </button>
-
-                    </div>
-                </div>
+                  disabled={product.quantity <= 1}
+                >
+                  -
+                </button>
+                <span>{product.quantity}</span>
+                <button
+                  onClick={() =>
+                    updateQtyCart(product.id, product.quantity + 1)
+                  }
+                >
+                  +
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -57,6 +42,3 @@ export function Cart({ cart, addToCart, rmToCart }) {
     </div>
   );
 }
-
-
-

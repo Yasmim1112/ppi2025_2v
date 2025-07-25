@@ -1,22 +1,19 @@
-import { createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
+export const CartContext = createContext({
+  // Products and loading/error states
+  products: [],
+  loading: false,
+  error: null,
+  // Cart management functions
+  cart: [],
+  addToCart: () => {},
+  updateQtyCart: () => {},
+  clearCart: () => {},
+});
 
-export const CartConctext = createContext(
-{
-    loading: false,
-    error: null,
-    clearCart: () => {},
-    updateQtyCart: () => {},
-    products: [],
-    cart: [],
-    addToCart: () => {},
-    rmToCart: () => {}
-);
-
-//Fetching products and managing cart state
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]);
-     
+  // Fetch products from the API
   var category = "beauty";
   var limit = 12;
   var apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
@@ -24,7 +21,6 @@ export function CartProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [ qty, setQty ] = useState(0);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -42,42 +38,48 @@ export function CartProvider({ children }) {
       fetchProducts();
     }, 100);
   }, []);
-  return (
-    <div className={styles.container}>
-      <div className={styles.grid}>
-        {products.map((product) => (
-          <Product key={product.id} product={product} addToCart={addToCart} />
-        ))}
-      </div>
-      {loading && (
-        <div>
-          <CircularProgress
-            // size="sm"
-            thickness={5}
-            style={{ margin: "2rem auto", display: "block" }}
-            sx={{
-              color: "#001111",
-            }}
-          />
-          <p>Loading products...</p>
-        </div>
-      )}
-      {error && <p>Error loading products: {error.message}</p>}
-    </div>
 
-  );
+  // Cart state management
+  const [cart, setCart] = useState([]);
+
+  function addToCart(product) {
+    // Check if the product is already in the cart
+    const existingProduct = cart.find((item) => item.id === product.id);
+    if (existingProduct) {
+      // If it exists, update the quantity
+      updateQtyCart(product.id, existingProduct.quantity + 1);
+    } else {
+      setCart((prevCart) => [...prevCart, {...product, quantity: 1}]);
+    }
+  }
+
+  function updateQtyCart(productId, quantity) {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: quantity } : item
+      )
+    );
+  }
+
+  function clearCart() {
+    setCart([]);
+  }
 
   const context = {
+    //Products and loading/error states
     products: products,
     loading: loading,
     error: error,
-
-    cart: cart ,
-    addToCart:addToCart,
-    updateQtyCart: updateQtyCart
+    //Cart management functions
+    cart: cart,
+    addToCart: addToCart,
+    updateQtyCart: updateQtyCart,
     clearCart: clearCart,
+  };
 
+  return (
+    <CartContext.Provider value={context}>
+      {children}
+    </CartContext.Provider>
+  );
 }
- return ()
-}
-
