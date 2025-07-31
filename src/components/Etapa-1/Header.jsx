@@ -15,9 +15,7 @@ export function Header() {
       <div className={styles.cart}>
         <Link to="/cart"><ShoppingBasket size={24} /></Link>
          {cart.length == 0 ? <h5></h5> : <p>{cart.length}</p>}
-        <p>
-          Total $: {cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}
-        </p>
+         
       </div>
     </header>
   );

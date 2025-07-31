@@ -30,8 +30,13 @@
   color: yellow;
   font-size: 1rem;
   font-weight: bold;
-padding-bottom: 0.5rem;
-  
+  position: relative;
+  top: -8px;
+}
+.cart {
+  display: flex;
+  align-items: center;
+
 }
 
 

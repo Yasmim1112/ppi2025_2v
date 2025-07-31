@@ -1,8 +1,9 @@
 import styles from "./ProductList.module.css";
 import { CircularProgress } from "@mui/material";
 import { Product } from "./Product";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { CartContext } from "../service/CartContext";
+import { useState } from "react";
 
 export function ProductList() {
   
@@ -13,12 +14,13 @@ export function ProductList() {
   function handleClear() {
     searchInput.current.value = "";
   }
- function handleSearch() {
-    const searchTerm = searchInput.current.value.toLowerCase();
-    console.log(searchTerm);
-    
- }
-  
+
+var [filteredProducts, setFilteredProducts] = useState(products);
+
+useEffect(() => {
+  setFilteredProducts(products);
+}, [products]);
+
   return (
     <div className={styles.container}>
       <div className="{styles.searchDiv}">
@@ -28,13 +30,20 @@ export function ProductList() {
         placeholder="Search products..."
 
         className={styles.searchInput}
-        onChange={handleSearch}
+        onChange={() => {
+            const query = searchInput.current.value.toLowerCase();
+            filteredProducts = products.filter(product =>
+              product.title.toLowerCase().includes(query)
+            );
+            setFilteredProducts(filteredProducts);
+          }
+}
 
      />
      <button className={styles.searchButton} onClick={handleClear}>CLEAR</button>
      </div>
       <div className={styles.grid}>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </div>
