@@ -9,7 +9,7 @@ export function ProductList() {
   const { products, loading, error } = useContext(CartContext);
   
   const searchInput = useRef(null);
-
+ 
   function handleClear() {
     searchInput.current.value = "";
   }

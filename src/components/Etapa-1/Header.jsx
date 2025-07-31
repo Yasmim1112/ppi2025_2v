@@ -14,9 +14,9 @@ export function Header() {
       <Link to="/"><h1>TRJ Megastore</h1></Link>
       <div>
         <Link to="/cart"><ShoppingBasket size={24} /></Link>
+         {cart.length == 0 ? <h5></h5> : <p>{cart.length}</p>}
         <p>
           Total $: {cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}
-           {cart.length > 0 ? <h3></h3> : <p>{cart.length} items</p>}
         </p>
       </div>
     </header>
