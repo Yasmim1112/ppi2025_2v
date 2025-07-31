@@ -8,12 +8,20 @@ import { useState } from "react";
 export function ProductList() {
   
   const { products, loading, error } = useContext(CartContext);
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
   
   const searchInput = useRef(null);
  
   function handleClear() {
     searchInput.current.value = "";
   }
+
+  setFilteredProducts(products);
+   products.filter((product) => {
+    product.name.toLowerCase().includes(query); ||
+    product.description.toLowerCase().includes(query);
+   });
 
 var [filteredProducts, setFilteredProducts] = useState(products);
 
