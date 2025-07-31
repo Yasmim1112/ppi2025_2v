@@ -23,14 +23,15 @@
 
 .cart p{
   display: inline-block;
-  background-color: yellow;
+  background-color: var(--gray-900);
   border: 1px solid var(--primary);
   padding: 5px;
   border-radius: 5px;
   color: yellow;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-
+padding-bottom: 0.5rem;
+  
 }
 
 

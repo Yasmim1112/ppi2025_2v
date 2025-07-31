@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Link to="/"><h1>TRJ Megastore</h1></Link>
-      <div>
+      <div className={styles.cart}>
         <Link to="/cart"><ShoppingBasket size={24} /></Link>
          {cart.length == 0 ? <h5></h5> : <p>{cart.length}</p>}
         <p>
