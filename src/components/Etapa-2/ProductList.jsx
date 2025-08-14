@@ -9,7 +9,7 @@ export function ProductList() {
   
   const { products, loading, error } = useContext(CartContext);
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  var [filteredProducts, setFilteredProducts] = useState(products);
   
   const searchInput = useRef(null);
  
@@ -18,12 +18,12 @@ export function ProductList() {
   }
 
   setFilteredProducts(products);
-   products.filter((product) => {
+   filteredProducts.filter((product) => {
     product.name.toLowerCase().includes(query); ||
     product.description.toLowerCase().includes(query);
    });
 
-var [filteredProducts, setFilteredProducts] = useState(products);
+
 
 useEffect(() => {
   setFilteredProducts(products);
