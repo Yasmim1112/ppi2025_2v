@@ -17,21 +17,13 @@ export function ProductList() {
     searchInput.current.value = "";
   }
 
-  setFilteredProducts(products);
-   filteredProducts.filter((product) => {
-    product.name.toLowerCase().includes(query); ||
-    product.description.toLowerCase().includes(query);
-   });
-
-
-
 useEffect(() => {
   setFilteredProducts(products);
 }, [products]);
 
   return (
     <div className={styles.container}>
-      <div className="{styles.searchDiv}">
+      <div className={styles.searchDiv}>
       <input
         type="text"
         ref={searchInput}

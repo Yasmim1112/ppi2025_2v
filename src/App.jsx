@@ -5,6 +5,7 @@ import { ProductList } from "./components/Etapa-2/ProductList";
 import { Cart } from "./components/Etapa-2/Cart";
 import { Route, Routes } from "react-router";
 import { CartProvider } from "./components/service/CartContext";
+import { TelaDel } from "./components/Etapa-2/Tela-del";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<ProductList />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<TelaDel />} />
           {/* Add more routes as needed */}
         </Routes>
       </CartProvider>
