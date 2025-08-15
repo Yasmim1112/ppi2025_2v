@@ -10,7 +10,18 @@ export const CartContext = createContext({
   addToCart: () => {},
   updateQtyCart: () => {},
   clearCart: () => {},
+
+  addProduct: () => {}, 
+  removeProduct: () => {},
+  registeredEmails: null,
+  addEmail: () => {},
+  registeredPasswords: null,
+  addPassword: () => {},
+  registerUser: () => {}, 
+  validateUser: () => {},
+
 });
+
 
 export function CartProvider({ children }) {
   // Fetch products from the API
@@ -21,6 +32,11 @@ export function CartProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [registeredEmails, setRegisteredEmails] = useState([]);
+  const [registeredPasswords, setRegisteredPasswords] = useState([]);
+
+
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -41,6 +57,24 @@ export function CartProvider({ children }) {
 
   // Cart state management
   const [cart, setCart] = useState([]);
+
+  const registerUser = (email, password) => {
+    setRegisteredEmails(prev => [...prev, email]);
+    setRegisteredPasswords(prev => [...prev, password]);
+  };
+
+  const validateUser = (email, password) => {
+    const idx = registeredEmails.indexOf(email);
+    return idx !== -1 && registeredPasswords[idx] === password;
+  };
+
+  const addProduct = (product) => {
+    setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
+  };
+
+  const removeProduct = (id) => {
+    setProducts((prev) => prev.filter((p) => p.id !== id));
+  };
 
   function addToCart(product) {
     // Check if the product is already in the cart
@@ -75,6 +109,13 @@ export function CartProvider({ children }) {
     addToCart: addToCart,
     updateQtyCart: updateQtyCart,
     clearCart: clearCart,
+
+    addProduct,
+    removeProduct,
+    registerUser,
+    validateUser,
+    registeredEmails: "",
+    registeredPasswords: "",
   };
 
   return (

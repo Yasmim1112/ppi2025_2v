@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 import { CartProvider } from "./components/service/CartContext";
 import { TelaDel } from "./components/Etapa-2/Tela-del";
 import { TelaDer } from "./components/Etapa-2/Tela-der";
+import { Estoque } from "./components/Etapa-2/Estoque";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<TelaDel />} />
           <Route path="/tela-der" element={<TelaDer />} />
+          <Route path="/estoque" element={<Estoque />} />
           {/* Add more routes as needed */}
         </Routes>
       </CartProvider>

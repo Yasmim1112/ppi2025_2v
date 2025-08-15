@@ -4,6 +4,7 @@ import { Product } from "./Product";
 import { useContext, useEffect, useRef } from "react";
 import { CartContext } from "../service/CartContext";
 import { useState } from "react";
+import { Link } from "react-router";
 
 export function ProductList() {
   
@@ -60,6 +61,9 @@ useEffect(() => {
           <p>Loading products...</p>
         </div>
       )}
+      <Link to="/estoque" className={styles.estoqueLink}>
+      <button className={styles.estoqueButton}>Estoque</button>
+    </Link>
       {error && <p>Error loading products: {error.message}</p>}
     </div>
   );
