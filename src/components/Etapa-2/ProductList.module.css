@@ -18,3 +18,15 @@
   /* justify-content: center; */
   /* align-content: center; */
 }
+.estoqueButton {
+  width: 100%;
+  padding: 0.5rem;
+  font-weight: bold;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+

@@ -25,6 +25,7 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+
 }
 
 .form label {
@@ -41,6 +42,16 @@
   font-weight: bold;
   margin-top: 1rem;
   width: 100%;
-  padding: 0.7;
+  padding: 0.5rem;
 }
 
+.form button {
+  width: 100%;
+  padding: 0.5rem;
+  font-weight: bold;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
