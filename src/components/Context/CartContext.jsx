@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { supabase } from "../utils/supabase";
 
 export const CartContext = createContext({
   // Products and loading/error states
@@ -36,10 +37,20 @@ export function CartProvider({ children }) {
   const [registeredPasswords, setRegisteredPasswords] = useState([]);
 
 
-
-
   useEffect(() => {
-    async function fetchProducts() {
+    async function fetchProductsAPI() {
+      const { data, error } = await supabase.from("product.2v").select();
+      if (error) {
+        setError('Feching products failed! ${erro}')
+      } else {
+        setProducts (products);
+      }
+      setLoading(false);
+
+    }
+    fechProductsSupabase();
+    
+      /*
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -53,7 +64,9 @@ export function CartProvider({ children }) {
     setTimeout(() => {
       fetchProducts();
     }, 100);
+    */
   }, []);
+  
 
   // Cart state management
   const [cart, setCart] = useState([]);
@@ -124,3 +137,4 @@ export function CartProvider({ children }) {
     </CartContext.Provider>
   );
 }
+
