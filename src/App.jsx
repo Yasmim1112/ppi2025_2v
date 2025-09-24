@@ -9,10 +9,12 @@ import { TelaDel } from "./components/Etapa-2/Tela-del";
 import { TelaDer } from "./components/Etapa-2/Tela-der";
 import { Estoque } from "./components/Etapa-2/Estoque";
 
+
 export default function App() {
   return (
     // React Fragment
     <>
+    <ToastContainer />
       <CartProvider>
         <Header />
         <Routes>
@@ -21,6 +23,8 @@ export default function App() {
           <Route path="/login" element={<TelaDel />} />
           <Route path="/tela-der" element={<TelaDer />} />
           <Route path="/estoque" element={<Estoque />} />
+          <Route path= "/register" element={<Register />} />
+
           {/* Add more routes as needed */}
         </Routes>
       </CartProvider>

@@ -12,6 +12,15 @@ export const CartContext = createContext({
   updateQtyCart: () => {},
   clearCart: () => {},
 
+  // User management 
+  session: null,
+  sessionLoading: false,
+  sessionError: null,
+  sessionMessege: null,
+  handlesignup: () => {},
+  handleSingin: () => {},
+  handleLogout: () => {},
+
   addProduct: () => {}, 
   removeProduct: () => {},
   registeredEmails: null,
@@ -49,7 +58,80 @@ export function CartProvider({ children }) {
 
     }
     fechProductsSupabase();
+
+    //User section management
+    const [sessionLoading, setSessionLodding] = useState(null);
+    const [session, setSession] = useState(false);
+    const [sessionMessege, setSessionMessage] = useState(null);
+    const [sessionError, setSessionError] = useState(null);
+
+  async function handlesignup(username, email, password) {
+    setSessionLodding(true);
+    setSessionMessage(null);
+    setSessionError(null);
+
+    try{
+      const { data, error } = await supabase. auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username: username,
+            adim: false,
+          },
+          emailRedirectTo: '${window.location.origin}/singnin',
+        }
+    });
+    if (error) throw error;
     
+      if (data?.user) {
+        setSessionMessage("Registraction successful! Please check your email for verification.");
+      
+    } cacth (error) {
+      setSessionError(error.message);
+    } finally {
+      setSessionLodding(false);
+    }
+  }
+   async function handleSingin(email, password) {
+    setSessionLodding(true);
+    setSessionMessage(null);
+    setSessionError(null);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) throw error;
+
+      if (data.secttion) 
+        setSession(data.session);
+        setSessionMessage("Login successful!");
+      
+
+    } catch (error) {
+      setSessionError(error.message);
+
+    } finally {
+      setSessionLodding(false);
+    }
+   }
+
+   async function handleLogout() {
+    setSessionLodding(true);
+    setSessionMessage(null);
+    setSessionError(null);
+    
+    try {
+      const {} = await supabase.auth.signOut();
+
+      if (error) throw error;
+  } catch (error) {
+    console.log(error.message);
+  } finally {
+
+
       /*
       try {
         const response = await fetch(apiUrl);
@@ -129,8 +211,18 @@ export function CartProvider({ children }) {
     validateUser,
     registeredEmails: "",
     registeredPasswords: "",
+
+  // Cart management functions
+  session: null,
+  sessionLoading: false,
+  sessionError: null,
+  sessionMessege: null,
+  handlesignup: () => {},
+  handleSingin: () => {},
+  handleLogout: () => {},
   };
 
+  
   return (
     <CartContext.Provider value={context}>
       {children}
