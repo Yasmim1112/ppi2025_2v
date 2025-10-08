@@ -6,170 +6,60 @@ export const CartContext = createContext({
   products: [],
   loading: false,
   error: null,
-  // Cart management functions
+  // Cart management
   cart: [],
   addToCart: () => {},
   updateQtyCart: () => {},
   clearCart: () => {},
-
-  // User management 
+  // User management
   session: null,
   sessionLoading: false,
+  sessionMessage: null,
   sessionError: null,
-  sessionMessege: null,
-  handlesignup: () => {},
-  handleSingin: () => {},
-  handleLogout: () => {},
-
-  addProduct: () => {}, 
-  removeProduct: () => {},
-  registeredEmails: null,
-  addEmail: () => {},
-  registeredPasswords: null,
-  addPassword: () => {},
-  registerUser: () => {}, 
-  validateUser: () => {},
-
+  handleSignUp: () => {},
+  handleSignIn: () => {},
+  handleSignOut: () => {},
 });
 
-
 export function CartProvider({ children }) {
-  // Fetch products from the API
-  var category = "beauty";
-  var limit = 12;
-  var apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [registeredEmails, setRegisteredEmails] = useState([]);
-  const [registeredPasswords, setRegisteredPasswords] = useState([]);
-
 
   useEffect(() => {
-    async function fetchProductsAPI() {
-      const { data, error } = await supabase.from("product.2v").select();
+    async function fetchProductsSupabase() {
+      const { data, error } = await supabase.from("product_2v").select();
       if (error) {
-        setError('Feching products failed! ${erro}')
+        setError(`Fetching products failed! ${error}`);
       } else {
-        setProducts (products);
+        setProducts(data);
       }
       setLoading(false);
-
     }
-    fechProductsSupabase();
+    fetchProductsSupabase();
+    //   async function fetchProductsAPI() {
+    //     // Fetch products from the API
+    //     var category = "beauty";
+    //     var limit = 12;
+    //     var apiUrl = `https://dummyjson.com/products/category/${category}?limit=${limit}&select=id,thumbnail,title,price,description`;
 
-    //User section management
-    const [sessionLoading, setSessionLodding] = useState(null);
-    const [session, setSession] = useState(false);
-    const [sessionMessege, setSessionMessage] = useState(null);
-    const [sessionError, setSessionError] = useState(null);
-
-  async function handlesignup(username, email, password) {
-    setSessionLodding(true);
-    setSessionMessage(null);
-    setSessionError(null);
-
-    try{
-      const { data, error } = await supabase. auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            username: username,
-            adim: false,
-          },
-          emailRedirectTo: '${window.location.origin}/singnin',
-        }
-    });
-    if (error) throw error;
-    
-      if (data?.user) {
-        setSessionMessage("Registraction successful! Please check your email for verification.");
-      
-    } cacth (error) {
-      setSessionError(error.message);
-    } finally {
-      setSessionLodding(false);
-    }
-  }
-   async function handleSingin(email, password) {
-    setSessionLodding(true);
-    setSessionMessage(null);
-    setSessionError(null);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
-
-      if (data.secttion) 
-        setSession(data.session);
-        setSessionMessage("Login successful!");
-      
-
-    } catch (error) {
-      setSessionError(error.message);
-
-    } finally {
-      setSessionLodding(false);
-    }
-   }
-
-   async function handleLogout() {
-    setSessionLodding(true);
-    setSessionMessage(null);
-    setSessionError(null);
-    
-    try {
-      const {} = await supabase.auth.signOut();
-
-      if (error) throw error;
-  } catch (error) {
-    console.log(error.message);
-  } finally {
-
-
-      /*
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        setProducts(data.products);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    setTimeout(() => {
-      fetchProducts();
-    }, 100);
-    */
+    //     try {
+    //       const response = await fetch(apiUrl);
+    //       const data = await response.json();
+    //       setProducts(data.products);
+    //     } catch (error) {
+    //       setError(error);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   }
+    //   setTimeout(() => {
+    //     fetchProductsAPI();
+    //   }, 100);
   }, []);
-  
 
-  // Cart state management
+  // Cart State Management
   const [cart, setCart] = useState([]);
-
-  const registerUser = (email, password) => {
-    setRegisteredEmails(prev => [...prev, email]);
-    setRegisteredPasswords(prev => [...prev, password]);
-  };
-
-  const validateUser = (email, password) => {
-    const idx = registeredEmails.indexOf(email);
-    return idx !== -1 && registeredPasswords[idx] === password;
-  };
-
-  const addProduct = (product) => {
-    setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
-  };
-
-  const removeProduct = (id) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-  };
 
   function addToCart(product) {
     // Check if the product is already in the cart
@@ -178,7 +68,7 @@ export function CartProvider({ children }) {
       // If it exists, update the quantity
       updateQtyCart(product.id, existingProduct.quantity + 1);
     } else {
-      setCart((prevCart) => [...prevCart, {...product, quantity: 1}]);
+      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
     }
   }
 
@@ -194,39 +84,109 @@ export function CartProvider({ children }) {
     setCart([]);
   }
 
+  // User Session Management
+  const [session, setSession] = useState(null);
+  const [sessionLoading, setSessionLoading] = useState(false);
+  const [sessionMessage, setSessionMessage] = useState(null);
+  const [sessionError, setSessionError] = useState(null);
+
+  async function handleSignUp(email, password, username) {
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username: username,
+            admin: false,
+          },
+          emailRedirectTo: `${window.location.origin}/signin`,
+        },
+      });
+
+      if (error) throw error;
+
+      if (data?.user) {
+        setSessionMessage(
+          "Registration successful! Check your email to confirm your account."
+        );
+        window.location.href = "/signin";
+      }
+    } catch (error) {
+      setSessionError(error.message);
+    } finally {
+      setSessionLoading(false);
+    }
+  }
+
+  async function handleSignIn(email, password) {
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      if (data.session) {
+        setSession(data.session);
+        setSessionMessage("Sign in successful!");
+      }
+    } catch (error) {
+      setSessionError(error.message);
+    } finally {
+      setSessionLoading(false);
+    }
+  }
+
+  async function handleSignOut() {
+    setSessionLoading(true);
+    setSessionError(null);
+    setSessionMessage(null);
+
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) throw error;
+
+      setSession(null);
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setSessionLoading(false);
+    }
+  }
+
   const context = {
     //Products and loading/error states
     products: products,
     loading: loading,
     error: error,
-    //Cart management functions
+    //Cart management
     cart: cart,
     addToCart: addToCart,
     updateQtyCart: updateQtyCart,
     clearCart: clearCart,
-
-    addProduct,
-    removeProduct,
-    registerUser,
-    validateUser,
-    registeredEmails: "",
-    registeredPasswords: "",
-
-  // Cart management functions
-  session: null,
-  sessionLoading: false,
-  sessionError: null,
-  sessionMessege: null,
-  handlesignup: () => {},
-  handleSingin: () => {},
-  handleLogout: () => {},
+    // User management
+    session: session,
+    sessionLoading: sessionLoading,
+    sessionMessage: sessionMessage,
+    sessionError: sessionError,
+    handleSignUp: handleSignUp,
+    handleSignIn: handleSignIn,
+    handleSignOut: handleSignOut,
   };
 
-  
   return (
-    <CartContext.Provider value={context}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={context}>{children}</CartContext.Provider>
   );
 }
-

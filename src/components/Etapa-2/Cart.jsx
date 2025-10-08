@@ -2,7 +2,7 @@ import styles from "./Cart.module.css";
 import { useContext } from "react";
 import { CartContext } from "../service/CartContext";
 import { Link } from "react-router";
-import { TelaDel } from "./Tela-del";
+import { TelaDel } from "./TelaDel.jsx";
 
 export function Cart() {
   const { cart, updateQtyCart, clearCart } = useContext(CartContext);

@@ -1,4 +1,4 @@
-import styles from "./Tela-del.module.css";
+import styles from "./TelaDel.module.css";
 import { Link } from "react-router";
 
 
