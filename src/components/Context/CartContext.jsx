@@ -27,7 +27,11 @@ export function CartProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  
+
   useEffect(() => {
+
+
     async function fetchProductsSupabase() {
       const { data, error } = await supabase.from("product_2v").select();
       if (error) {
@@ -90,6 +94,27 @@ export function CartProvider({ children }) {
   const [sessionLoading, setSessionLoading] = useState(false);
   const [sessionMessage, setSessionMessage] = useState(null);
   const [sessionError, setSessionError] = useState(null);
+
+  useEffect(() => {
+    // Verifica se tem sessão ativa no supabase
+    async function getSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setSession(session || null);
+    }
+
+    getSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session || null);
+    });
+
+    return() => subscription.unsubscribe();
+
+  }, []);
 
   async function handleSignUp(email, password, username) {
     setSessionLoading(true);
