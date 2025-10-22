@@ -1,11 +1,10 @@
 import styles from "./Cart.module.css";
 import { useContext } from "react";
-import { CartContext } from "../service/CartContext";
-import { Link } from "react-router";
-import { TelaDel } from "./TelaDel.jsx";
+import { CartContext } from "./components/Context/CartContext";
 
 export function Cart() {
   const { cart, updateQtyCart, clearCart } = useContext(CartContext);
+
   return (
     <div className={styles.cart}>
       <h2>Shopping Cart</h2>
@@ -40,8 +39,6 @@ export function Cart() {
           ))}
         </ul>
       )}
-      <Link to="/login"><button>Continuar</button></Link>
     </div>
   );
 }
-
