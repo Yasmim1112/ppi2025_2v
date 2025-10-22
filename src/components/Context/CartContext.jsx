@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import { supabase } from "../utils/supabase";
+import { supabase } from "../../utils/supabase";
+
 
 export const CartContext = createContext({
   // Products and loading/error states

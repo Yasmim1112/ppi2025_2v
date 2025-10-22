@@ -1,6 +1,6 @@
 import styles from "./Login.module.css";
 import { useState, useContext, useEffect } from "react";
-import { CartContext } from "./components/Context/CartContext";
+import { CartContext } from "../Context/CartContext";
 import { Field } from "@base-ui-components/react/field";
 import { Form } from "@base-ui-components/react/form";
 import { EyeIcon, EyeOffIcon } from "lucide-react";

@@ -1,6 +1,6 @@
 import styles from "./Estoque.module.css";
 import { useContext, useState } from "react";
-import { CartContext } from "./components/Context/CartContext";
+import { CartContext } from "../Context/CartContext";
 
 export function Estoque() {
   const { products, addProduct, removeProduct } = useContext(CartContext);

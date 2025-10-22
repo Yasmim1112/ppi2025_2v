@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { CartContext } from "./components/Context/CartContext";
-import styles from "./User.module.css";
+import { CartContext } from "../Context/CartContext";
+import styles from "./Usuario.module.css";
 
 
 export function User() {

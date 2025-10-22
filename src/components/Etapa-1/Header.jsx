@@ -2,8 +2,8 @@ import styles from "./Header.module.css";
 import { ShoppingBasket } from "lucide-react";
 import { Link } from "react-router";
 import { useContext } from "react";
-import { CartContext } from "./components/Context/CartContext";
-import { ThemeToggle } from "./ThemeToggle";
+import { CartContext } from "../Context/CartContext";
+import { ThemeToggle } from "../Etapa-2/ThemeToggle";
 
 export function Header() {
   const { cart, session } = useContext(CartContext);
