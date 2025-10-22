@@ -17,6 +17,15 @@ export function ProductList() {
   function handleClear() {
     searchInput.current.value = "";
   }
+ function handleSearch() {
+    const query = searchInput.current.value.toLowerCase();
+    setFilteredProducts(
+      products.filter((product) =>
+        product.title.toLowerCase().includes(query) || 
+        product.description.toLowerCase().includes(query)
+      )
+    );
+  }
 
 useEffect(() => {
   setFilteredProducts(products);
@@ -24,25 +33,18 @@ useEffect(() => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.searchDiv}>
-      <input
-        type="text"
-        ref={searchInput}
-        placeholder="Search products..."
-
-        className={styles.searchInput}
-        onChange={() => {
-            const query = searchInput.current.value.toLowerCase();
-            filteredProducts = products.filter(product =>
-              product.title.toLowerCase().includes(query)
-            );
-            setFilteredProducts(filteredProducts);
-          }
-}
-
-     />
-     <button className={styles.searchButton} onClick={handleClear}>CLEAR</button>
-     </div>
+      <div className={styles.searchContainer}>
+        <input
+          ref={searchInput}
+          type="text"
+          placeholder="Search products..."
+          className={styles.searchInput}
+          onChange={handleSearch}
+        />
+        <button className={styles.searchButton} onClick={handleClear}>
+          CLEAR
+        </button>
+      </div>
       <div className={styles.grid}>
         {filteredProducts.map((product) => (
           <Product key={product.id} product={product} />

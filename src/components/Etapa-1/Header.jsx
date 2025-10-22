@@ -14,11 +14,11 @@ export function Header() {
         <Link to="/" className={styles.link}>
           <h1>TRJ Megastore</h1>
         </Link>
-        {session && (
+        {session ? (
           <Link to="/user" className={styles.welcomeMessage}>
             Welcome, {session.user.user_metadata.username} {session.user.user_metadata.admin && '(admin ❤)'}
           </Link>
-        )}
+        ): null}
       </div>
 
       <div className={styles.actions}>

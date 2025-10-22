@@ -8,6 +8,7 @@
   background: var(--gray-100);
   min-height: 100vh;
   color: var(--primary-dark);
+  margin-top: 15rem;
 }
 
 .main {
