@@ -1,14 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
-import { SessionContext } from "../context/SessionContext";
+import { SessionContext } from "../Context/SessionContext";
 import styles from "./Usuario.module.css";
-import { supabase } from "../utils/supabase";
-
+import { supabase } from "../../utils/supabase";
 
 
 export function User() {
   const { session, handleSignOut } = useContext(SessionContext);
-  const { products, addProduct, removeProduct, updateProduct } = useContext(CartContext);
+  const { products, addProduct, removeProductFromDB, updateProduct } = useContext(CartContext);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -204,7 +203,7 @@ export function User() {
                     <button className={styles.estoqueButton} onClick={() => iniciarEdicao(p)}>
                       Editar
                     </button>
-                    <button className={styles.estoqueRemove} onClick={() => removeProduct(p.id)}>
+                    <button className={styles.estoqueRemove} onClick={() => removeProductFromDB(p.id)}>
                       Remover
                     </button>
                   </li>
