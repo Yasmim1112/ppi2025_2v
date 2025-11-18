@@ -9,12 +9,14 @@ import { ToastContainer } from "react-toastify";
 import { Login } from "./components/Etapa-2/Login";
 import { User } from "./components/Etapa-2/Usuario";
 import { Estoque } from "./components/Etapa-2/Estoque";
+import { SessionProvider } from "./components/Context/SessionContext";  
 
 export default function App() {
   return (
     // React Fragment
     <>
       <ToastContainer />
+      <SessionProvider>
       <CartProvider>
         <Header />
         <Routes>
@@ -26,6 +28,7 @@ export default function App() {
           <Route path="/estoque" element={<Estoque />} />
         </Routes>
       </CartProvider>
+      </SessionProvider>
     </>
   );
 }
