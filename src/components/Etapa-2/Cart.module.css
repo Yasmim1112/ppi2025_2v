@@ -5,11 +5,11 @@
   padding: 1rem;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #1F2A44, #263553);
+  background-color: var(--background);
   min-height: 100vh;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-template-rows: repeat(auto-fit, min-content);
-  color: #4A90E2;
+  color: #265182;
   grid-template-areas:
     "title title"
     "main checkout";
@@ -24,19 +24,19 @@
   grid-area: title;
   text-align: center;
   height: 10rem;
-  color: #4A90E2;
+  color: var(--primary);
 }
 
 .cart h3 {
   font-size: 3rem;
   font-weight: bold;
-  color: #4A90E2;
+  color: var(--text);
 }
 
 .cart p {
   font-size: 3rem;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .cart button {
@@ -62,12 +62,12 @@
   align-items: center;
   width: 100%;
   padding: 0.5rem;
-  background-color: #263553;
+  background-color: var(--gray-100);
   border: 1px solid #4A90E2;
   border-radius: 8px;
   margin-bottom: 2rem;
   padding-right: 2rem;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .checkout {

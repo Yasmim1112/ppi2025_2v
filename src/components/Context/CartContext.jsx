@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { supabase } from "../../utils/supabase";
 import { SessionContext } from "./SessionContext";
+import { ThemeToggle } from "../Etapa-2/ThemeToggle";
 
 export const CartContext = createContext({
   products: [],

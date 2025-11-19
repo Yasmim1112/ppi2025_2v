@@ -2,21 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15rem;
   gap: 2rem;
   padding: 2rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 21, 33, 255) 0%,
-    rgba(10, 20, 117, 255) 100%
-  );
-  margin-top: 10rem;
+  background-color: var(--background);
+  margin-top: 15rem;
   min-height: 90vh;
 }
 
 .container h1 {
   font-size: 4rem;
-  color: rgb(37, 100, 234);
+  color: var(--primary);
   margin-bottom: 1rem;
 }
 
@@ -27,10 +22,10 @@
   width: 100%;
   max-width: 40rem;
   padding: 2rem;
-  background: rgb(17, 31, 80);
+  background: var(--gray-100);
   border-radius: 1rem;
   /* box-shadow: 0 1rem 1rem -0.25rem rgb(0 0 0 / 0.1), 0 1rem 1rem -0.25rem rgb(0 0 0 / 0.1); */
-  box-shadow: 0 0 1rem 0.25rem rgb(37, 100, 234);
+  box-shadow: 0 0 1rem 0.25rem var(--gray-300);
 }
 
 .field {
@@ -42,7 +37,7 @@
 .label {
   font-size: 1.5rem;
   font-weight: bolder;
-  color: rgb(37, 100, 234);
+  color: var(--primary);
 }
 
 .inputWrapper {
@@ -52,12 +47,12 @@
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 0.25rem solid rgb(32, 59, 156);
+  border: 0.25rem solid var(--primary);
   border-radius: 0.75rem;
   font-size: 1.5rem;
   transition: all 0.2s ease;
-  background-color: rgb(17, 31, 80);
-  color: rgb(37, 100, 234);
+  background-color: var(--gray-100);
+  color: var(--text);
 }
 
 .input:hover {
@@ -66,7 +61,7 @@
 
 .input:focus {
   outline: none;
-  border-color: rgb(32, 59, 156);
+  border-color: var(--primary);
   box-shadow: 0 0 0 0.25rem var(--primary-light);
 }
 
@@ -79,7 +74,7 @@
   height: 2rem;
   background: transparent;
   border: 0;
-  color: rgb(37, 100, 234);
+  color: var(--primary);
   cursor: button;
   border-radius: 1rem;
 }
@@ -89,14 +84,14 @@
 }
 
 .iconBtn:focus-visible {
-  outline: 0.5rem solid rgb(37, 100, 234);
+  outline: 0.5rem solid var(--primary);
   outline-offset: 0.5rem;
 }
 
 .error {
   font-size: 1.25rem;
   font-style: italic;
-  color: #ef4444;
+  color: var(--danger, #ef4444);
   margin-top: 0.25rem;
 }
 
@@ -105,8 +100,8 @@
   padding: 0.875rem;
   border: none;
   border-radius: 0.75rem;
-  background-color: rgb(32, 59, 156);
-  color: rgb(37, 100, 234);
+  background-color: var(--primary);
+  color: var(--gray-900);
   font-size: 2rem;
   font-weight: bolder;
   transition: all 0.2s ease;
@@ -128,13 +123,13 @@
 
 .button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 0.5rem rgb(37, 100, 234);
+  box-shadow: 0 0 0 0.5rem var(--primary);
 }
 
 .info {
   margin-top: 1rem;
   font-size: 1.5rem;
-  color: rgb(37, 100, 234);
+  color: var(--primary);
   cursor: pointer;
   text-decoration: underline;
   background: none;
